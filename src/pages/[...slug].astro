@@ -6,6 +6,8 @@ import PortableText from '../components/SanityPortableText.astro';
 var { slug } = (Astro.params ?? "")
 if (slug) slug.replaceAll('/', '');
 
+Astro.response.headers.set('Cache-Control', 'public, max-age=60, s-maxage=3600');
+
 let enabled
 const referrer = Astro.url.href
 if (referrer.includes('preview')) {enabled = 'true'} else {enabled = 'false'}

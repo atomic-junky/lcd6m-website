@@ -2,6 +2,8 @@
 import { sanityClient } from "sanity:client";
 import BlogLayout from '../layouts/BlogLayout.astro';
 
+Astro.response.headers.set('Cache-Control', 'public, max-age=60, s-maxage=3600');
+
 const postCount = await sanityClient.fetch(`count(*[_type == "post" && defined(slug)])`);
 ---
 

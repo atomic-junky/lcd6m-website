@@ -7,6 +7,8 @@ import { capitalizeFirstLetter } from '../../utils/helpers';
 
 var { slug } = (Astro.params ?? "")
 
+Astro.response.headers.set('Cache-Control', 'public, max-age=60, s-maxage=3600');
+
 const baseQuery = `*[_type == "post" && defined(slug) && tags[] match lower("${slug}")] | order(publishedAt desc)`
 const postCount = await sanityClient.fetch(`count(${baseQuery})`);
 const title = capitalizeFirstLetter(slug)
