@@ -5,32 +5,33 @@ import react from '@astrojs/react';
 import netlify from '@astrojs/netlify';
 import { imageService } from "@unpic/astro/service";
 
+// Load .env file using Vite (if not already loaded by process)
 import { loadEnv } from "vite";
-
-const { CONFIG_BASE_URL } = loadEnv(process.env.CONFIG_BASE_URL, process.cwd(), "")
-const { SANITY_PROJECT_ID } = loadEnv(process.env.SANITY_PROJECT_ID ?? "", process.cwd(), "");
-const { SANITY_DATASET } = loadEnv(process.env.SANITY_DATASET ?? "", process.cwd(), "");
-const { SANITY_USE_CDN } = loadEnv(process.env.SANITY_USE_CDN ?? "", process.cwd(), "");
-
+const env = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
 
 export default defineConfig({
   integrations: [sanity({
-      projectId: SANITY_PROJECT_ID,
-      dataset: SANITY_DATASET || 'production',
+      projectId: env.PUBLIC_SANITY_STUDIO_PROJECT_ID || env.SANITY_PROJECT_ID || process.env.SANITY_PROJECT_ID,
+      dataset: env.PUBLIC_SANITY_STUDIO_DATASET || env.SANITY_DATASET || process.env.SANITY_DATASET || 'production',
 
-      useCdn: SANITY_USE_CDN || false,
+      useCdn: (env.SANITY_USE_CDN || process.env.SANITY_USE_CDN) === 'true' ? true : false,
       studioBasePath: '/admin',   
       }),
       icon(),
       react(),
   ],
   image: {
+    domains: ["cdn.sanity.io"],
     service: imageService({
       placeholder: "blurhash",
       layout: "constrained",
     }),
   },
-  site: CONFIG_BASE_URL,
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "hover"
+  },
+  site: env.CONFIG_BASE_URL || process.env.CONFIG_BASE_URL,
   output: 'server',
   adapter: netlify(),
 });

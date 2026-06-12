@@ -168,6 +168,38 @@ div.blog-card {
 	display: flex;
 }
 
+.pagination > ul {
+	gap: 0;
+	border-color: var(--text-900);
+	border: 2px solid;
+	border-radius: 0.5rem;
+}
+
+.pagination > ul > li {
+	gap: 0;
+	height: stretch;
+	border-color: var(--text-900);
+	border-left: 2px solid;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.pagination > ul > li:first-child {
+	gap: 0;
+	border: none;
+}
+
+.pagination > ul > li > a {
+	border: none;
+	border-radius: 0;
+}
+
+.pagination > ul > li > span {
+	margin: 0 0.5rem 0 0.5rem;
+}
+
+
 
 @media screen and (max-width: 750px) {
 	.blog-wrapper {

@@ -31,11 +31,11 @@ const { data: header } = await loadQuery({
 
 <header id="header">
 	<div class="header-content" id="menu">
-		<div class="title-container header-left">
-		<a class="title-link" href="/">
-			<Image class="header-img" src={logo} alt="Logo de Rokhs & Rôles" height={35} />
-			<span class="title-label">{SITE_TITLE}</span>
-		</a>
+		<div class="title-container header-left" transition:persist>
+			<a class="title-link" href="/">
+				<Image class="header-img" src={logo} alt="Logo de Rokhs & Rôles" height={35} />
+				<span class="title-label">{SITE_TITLE}</span>
+			</a>
 		</div>
 
 		<div class="header-links" id="navbar">
@@ -57,7 +57,7 @@ const { data: header } = await loadQuery({
 			</a>
 		</div>
 
-		<div class="join-container header-right">
+		<div class="join-container header-right" transition:persist>
 			<JoinButton />
 		</div>
 	</div>

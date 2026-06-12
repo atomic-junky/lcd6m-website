@@ -1,0 +1,45 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build",
+			"type": "shell",
+			"command": "npm run build"
+		},
+		{
+			"label": "run-test",
+			"type": "shell",
+			"command": "node -r vite/register src/testm.js"
+		},
+		{
+			"label": "test-load-env",
+			"type": "shell",
+			"command": "node -e \"import('vite').then(v => console.log(v.loadEnv('development', process.cwd(), '')))\""
+		},
+		{
+			"label": "test-env",
+			"type": "shell",
+			"command": "node -e \"import('vite').then(v => { const env = v.loadEnv('development', process.cwd(), ''); console.log('ID:', env.SANITY_PROJECT_ID, 'or', env.PUBLIC_SANITY_STUDIO_PROJECT_ID) })\""
+		},
+		{
+			"label": "test-vite",
+			"type": "shell",
+			"command": "node test-vite.mjs"
+		},
+		{
+			"label": "preview",
+			"type": "shell",
+			"command": "astro preview"
+		},
+		{
+			"label": "build",
+			"type": "shell",
+			"command": "npx astro build"
+		},
+		{
+			"label": "build",
+			"type": "shell",
+			"command": "npm run build"
+		}
+	]
+}

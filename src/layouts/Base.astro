@@ -24,7 +24,7 @@ const visualEditingEnabled = import.meta.env.PUBLIC_SANITY_VISUAL_EDITING_ENABLE
 	</head>
 	<body>
 		<Header />
-		<main>
+		<main transition:animate="initial">
             <slot />
 			<VisualEditing enabled={visualEditingEnabled} zIndex={9999}/>
 		</main>

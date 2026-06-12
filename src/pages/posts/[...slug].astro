@@ -1,7 +1,7 @@
 ---
 import Page from "../../layouts/Page.astro";
 import { loadQuery } from "../../lib/load-query";
-import { PortableText } from '@portabletext/react';
+import SanityPortableText from '../../components/SanityPortableText.astro';
 import { getSanityImageURL } from "../../utils/helpers";
 import BlogPagination from '../../components/BlogPagination.astro';
 
@@ -72,7 +72,7 @@ const blogImageUrl = `url("${currentPost.mainImage ? getSanityImageURL(currentPo
 
   <section class="blog-content-section">
     <div>
-      <PortableText value={post.currentPost.body} />
+      <SanityPortableText value={post.currentPost.body} />
     </div>
     <div class="controls">
       <BlogPagination
